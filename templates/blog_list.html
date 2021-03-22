@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% block category %}
+<li>
+    <a href="{% url 'my_app:create_blog' pk %}">Create Blog</a>
+</li>
+{% endblock category %}
+<main>
+    <div class="trending-area fix">
+        <div class="container">
+            <div class="trending-main">
+                <div class="row">
+                    <div class="col-lg-4">
+                        {% if blogs %}
+                        {% for blog in blogs %}
+                        <div class="trand-right-single d-flex">
+                            <div class="trand-right-img">
+                                {% if blog.file.name|slice:"-1:" == 'g' %}
+                                <img style="width: 240px; height: 160px;"  src="{{ blog.file.url }}" alt="">
+                                {% endif %}
+                            </div>
+                            <div class="trand-right-cap">
+                                <span class="color1">{{ blog.category.title }}</span>
+                                <h4><a href="{% url 'my_app:detail_blog' blog.id %}">{{ blog.title }}</a></h4>
+                                {% if user.is_authenticated and user == blog.category.user%}
+                                <a style="color: red;" href="{% url 'my_app:delete_blog' blog.id %}">
+                                    <small>Poz</small>
+                                </a> | 
+                                <a style="color:green" href="{% url 'my_app:update_blog' blog.id %}">
+                                    <small>Uytget</small>
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="trand-right-single d-flex">
+                            <div class="trand-right-img">
+                                <a href="{% url 'my_app:create_blog' pk %}">
+                                    <img style="width: 120px; height: 100px;" src="{% static 'download.jpeg' %}" alt="">
+                                </a>
+                            </div>
+                            <div class="trand-right-cap">
+                                <span class="color1">create new blog</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

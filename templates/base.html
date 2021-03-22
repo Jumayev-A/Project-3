@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="js sizes customelements history pointerevents postmessage webgl websockets cssanimations csscolumns csscolumns-width csscolumns-span csscolumns-fill csscolumns-gap csscolumns-rule csscolumns-rulecolor csscolumns-rulestyle csscolumns-rulewidth csscolumns-breakbefore csscolumns-breakafter csscolumns-breakinside flexbox picture srcset webworkers" lang="zxx">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>News HTML-5 Template </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href=" {% static 'css/home/bootstrap.min.css' %} ">
+        <link rel="stylesheet" href="{% static 'css/home/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/home/ticker-style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/home/flaticon.css' %}">
+        <link rel="stylesheet" href="{% static 'css/home/slicknav.css' %}">
+        <link rel="stylesheet" href="{% static 'css/home/animate.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/home/magnific-popup.css' %}">
+        <link rel="stylesheet" href="{% static 'css/home/fontawesome-all.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/home/themify-icons.css' %}">
+        <link rel="stylesheet" href="{% static 'css/home/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/home/slick.css' %}">
+        <link rel="stylesheet" href="{% static 'css/home/nice-select.css' %}">
+    </head>
+    <body style="overflow: visible;">
+        <header>
+            <div class="header-area">
+                <div class="main-header ">
+                    <div class="header-bottom header-sticky">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-xl-10 col-lg-10 col-md-12 header-flex">
+                                    <div class="main-menu d-none d-md-block">
+                                        <nav>
+                                            <ul id="navigation">    
+                                                <li>
+                                                    <a href="/">Home</a>
+                                                </li>
+                                                {% block category %}
+                                                  
+                                                {% endblock category %}
+                                              
+                                                {% if messages %}
+                                                <li>
+                                                    {% for message in messages %}
+                                                    {{ message }}
+                                                    {% endfor %}
+                                                </li>
+                                                {% endif %}
+                                                {% if user.is_authenticated %}
+                                                {{ user }}                                                
+                                                {% endif %}
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-lg-2 col-md-4">
+                                    <div class="header-right-btn f-right d-none d-lg-block">
+                                        <a class="btn-link" href="{% url 'account:login' %}">Login</a>|
+                                        <a class="btn-link" href="{% url 'account:register' %}">Register</a>|
+                                        <a class="btn-link" href="{% url 'account:logout' %}">Log Out</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <br>
+        <hr>
+        {% block content %}
+          
+        {% endblock content %}
+    </body>
+    </html>

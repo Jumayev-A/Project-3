@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<main>
+    <div class="about-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="about-right mb-90">
+                        <div class="about-img">
+                            {% if blog.file.name|slice:"-1:" == 'g' %}
+                            <img style="width: 750px; height: 400px;"  src="{{ blog.file.url }}" alt="">
+                            {% endif %}
+                        </div>
+                        <div class="section-tittle mb-30 pt-30">
+                            <small>{{ blog.category.title }}</small>
+                            <h3>{{ blog.title }}</h3>
+                        </div>
+                        <div class="about-prea">
+                            <p class="about-pera1 mb-25">
+                                {{ blog.description }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

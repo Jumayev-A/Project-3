@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html style="overflow: hidden;">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Register page</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="keywords" content="Augment Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design">
+		<script type="application/x-javascript"> 
+			addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); 
+			function hideURLbar(){ window.scrollTo(0,1); } 
+		</script>
+		<style>
+		.errorlist {
+			list-style-type:none;
+			}
+		</style>
+ <!-- Bootstrap Core CSS -->
+<link href=" {% static 'bootstrap.min.css' %} " rel="stylesheet" type="text/css">
+<!-- Custom CSS -->
+<link href=" {% static 'style.css' %} " rel="stylesheet" type="text/css">
+<!-- Graph CSS -->
+<link href=" {% static 'font-awesome.css' %} " rel="stylesheet"> 
+<!-- jQuery -->
+<link href="file://fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400" rel="stylesheet" type="text/css">
+<!-- lined-icons -->
+<link rel="stylesheet" href=" {% static 'icon-font.min.css' %} " type="text/css">
+<!-- //lined-icons -->
+<script src=" {% static 'jquery-1.10.2.min.js' %} "></script>
+<!--clock init--> 
+</head> 
+<body>
+	<div class="error_page">
+		<div class="error-top up">
+			<h2 class="inner-tittle page">Sign Up</h2>
+			<div class="login">
+				<form action='{% url "account:login" %}' method='post'>{% csrf_token %}
+					<input class="text" type="text" placeholder="username" name="username" required>
+					<input class="text" type="password" placeholder="password" name="password" required>
+					<div class="submit"><input type="submit" onclick="myFunction()" value="Sign up"></div>
+					<div class="new">
+						<p class="sign up">Don't have an account yet? <a href="{% url 'account:register' %}"> Register here.</a></p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="footer sign">
+		<div class="error-btn">
+			<a class="read fourth" href="/">Return to Home</a>
+		</div>
+	</div>
+<!--js -->
+	<script src=" {% static 'jquery.nicescroll.js' %} "></script>
+	<script src=" {% static 'scripts.js' %} "></script><div id="ascrail2000" class="nicescroll-rails" style="width: 5px; z-index: 1000; background: rgb(0, 37, 97); cursor: default; position: fixed; top: 0px; height: 100%; right: 0px; opacity: 0;"><div style="position: relative; top: 1px; float: right; width: 5px; height: 498px; background-color: rgb(0, 198, 215); border: 0px; background-clip: padding-box; border-radius: 10px;"></div></div><div id="ascrail2000-hr" class="nicescroll-rails" style="height: 5px; z-index: 1000; background: rgb(0, 37, 97); position: fixed; left: 0px; width: 100%; bottom: 0px; cursor: default; opacity: 0; display: none;"><div style="position: relative; top: 0px; height: 5px; width: 1312px; background-color: rgb(0, 198, 215); border: 0px; background-clip: padding-box; border-radius: 10px;"></div></div>
+<!-- Bootstrap Core JavaScript -->
+	<script src=" {% static 'bootstrap.min.js' %} "></script>
+
+</body></html>
