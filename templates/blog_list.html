@@ -19,6 +19,9 @@
                                 {% if blog.file.name|slice:"-1:" == 'g' %}
                                 <img style="width: 240px; height: 160px;"  src="{{ blog.file.url }}" alt="">
                                 {% endif %}
+                                {% if blog.file.name|slice:"-3:" == 'mp4' %}
+                                <video style="width: 240px; height: 160px;" src="{{ blog.file.url }}" controls></video>
+                                {% endif %}
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color1">{{ blog.category.title }}</span>
