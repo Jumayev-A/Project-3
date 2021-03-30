@@ -14,3 +14,4 @@
 ### Password
 * admin
 
+#### kategoriýa diňe surat goşsaň görüner ýaly etdim, bloga .mp4 foramtda klip goşup bolýar.Galan zat öňki ýaly
