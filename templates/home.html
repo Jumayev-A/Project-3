@@ -1,21 +1,57 @@
 {% extends 'base.html' %}
+{% block category %}{% url 'my_app:create_category' %}{% endblock category %}
+{% block text %}Kategoriya doredin{% endblock text %}
 {% block content %}
-{% block category %}
-<li>
-    <a href="{% url 'my_app:create_category' %}">Create Category</a>
-</li>
-{% endblock category %}
+{% if q %}
+<h5 style="text-align: center;">Tapylan Bloglar</h5>
+{% endif %}
+<hr>
 <main>
     <div class="trending-area fix">
         <div class="container">
+          
             <div class="trending-bottom">
                 <div class="row">
+                    {% if q %}
+                    {% for categori in q %}
+                    <div class="col-lg-4">
+                        <div class="single-bottom mb-35">
+                            <div class="trend-bottom-img mb-30">
+                                <a href="{% url 'my_app:detail_blog' categori.id %}">
+                                    {% if categori.file.name|slice:"-1:" == 'g' %}
+                                    <img style="width: 240px; height: 160px;"  src="{{ categori.file.url }}" alt="">
+                                    {% endif %}
+                                    {% if categori.file.name|slice:"-3:" == 'mp4' %}
+                                    <video style="width: 240px; height: 160px;" src="{{ categori.file.url }}"></video>
+                                    {% endif %}
+                                </a>
+                            </div>
+                            {% if user.is_authenticated and user == categori.user%}
+                            <a style="color: red;" href="{% url 'my_app:delete_category' categori.id %}"><small>Poz</small></a> | 
+                            <a style="color:green" href="{% url 'my_app:update_category' categori.id %}"><small>Uytget</small></a>
+                            {% endif %}
+                            <div class="trend-bottom-cap">
+                                <span class="color1">{{ categori.category.name }}</span>
+                                <h4>
+                                    <a href="{% url 'my_app:detail_blog' categori.id %}">
+                                        {{ categori.title }}
+                                    </a>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                   
+<!-- else -->
+                    {% else %}
                     {% for categori in categories %}
                     <div class="col-lg-4">
                         <div class="single-bottom mb-35">
                             <div class="trend-bottom-img mb-30">
                                 {% if categori.file.name|slice:"-1:" == 'g' %}
-                                <img style="width: 240px; height: 160px;"  src="{{ categori.file.url }}" alt="">    
+                                <a href="{% url 'my_app:blog_list' categori.id %}">
+                                    <img style="width: 240px; height: 160px;"  src="{{ categori.file.url }}" alt="">
+                                </a>    
                                 {% endif %}
                             </div>
                             {% if user.is_authenticated and user == categori.user%}
@@ -33,6 +69,9 @@
                         </div>
                     </div>
                     {% endfor %}
+                    {% endif %}
+                    
+                    
                 </div>
             </div>
         </div>

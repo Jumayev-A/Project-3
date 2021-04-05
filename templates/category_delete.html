@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<main>
+    <div class="trending-area fix">
+        <div class="container">
+            <div class="trending-main">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="single-bottom mb-35">
+                            <h4>Siz cyndanama bu katgoriyany pozmak isleyanizmi?</h4><br>
+                            <div class="trend-bottom-img mb-30">
+                                <a href="{% url 'my_app:blog_list' object.id %}">
+                                    {% if object.file.name|slice:"-1:" == 'g' %}
+                                    <img style="width: 240px; height: 160px;"  src="{{ object.file.url }}" alt="">
+                                    {% endif %}
+                                    {% if object.file.name|slice:"-3:" == 'mp4' %}
+                                    <video style="width: 240px; height: 160px;" src="{{ object.file.url }}"></video>
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <div class="trend-bottom-cap">
+                                <span class="color1">{{ object.name }}</span>
+                                <h4>
+                                    <a href="{% url 'my_app:blog_list' object.id %}">
+                                        {{ object.title }}
+                                    </a>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <form method="POST">{% csrf_token %}
+                    <button class="btn-danger" type="submit">Hawa</button>
+                    <a href="#" class="ti-link" style="color: green;">Yok</a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

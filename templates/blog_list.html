@@ -1,11 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block category %}{% url 'my_app:create_blog' pk %}{% endblock category %}
+{% block text %}Blog doredin{% endblock text %}
 {% block content %}
-{% block category %}
-<li>
-    <a href="{% url 'my_app:create_blog' pk %}">Create Blog</a>
-</li>
-{% endblock category %}
+<style>
+    .pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+</style>
 <main>
     <div class="trending-area fix">
         <div class="container">
@@ -16,12 +29,14 @@
                         {% for blog in blogs %}
                         <div class="trand-right-single d-flex">
                             <div class="trand-right-img">
+                                <a href="{% url 'my_app:detail_blog' blog.id %}">
                                 {% if blog.file.name|slice:"-1:" == 'g' %}
                                 <img style="width: 240px; height: 160px;"  src="{{ blog.file.url }}" alt="">
                                 {% endif %}
                                 {% if blog.file.name|slice:"-3:" == 'mp4' %}
-                                <video style="width: 240px; height: 160px;" src="{{ blog.file.url }}" controls></video>
+                                <video style="width: 240px; height: 160px;" src="{{ blog.file.url }}"></video>
                                 {% endif %}
+                            </a>
                             </div>
                             <div class="trand-right-cap">
                                 <span class="color1">{{ blog.category.title }}</span>
@@ -45,12 +60,28 @@
                                 </a>
                             </div>
                             <div class="trand-right-cap">
-                                <span class="color1">create new blog</span>
+                                <span class="color1">Täze blog dörediň</span>
                             </div>
                         </div>
                         {% endif %}
                     </div>
                 </div>
+                
+                {% if count_pag and blogs.paginator.num_pages >= 2  %}
+                <div> 
+                    <div class="pagination">
+                        {% if blogs.has_previous %}
+                        <a href="?page={{ blogs.previous_page_number }}">&laquo;</a>  
+                        {% endif %}
+                        {% for page in count_pag %}
+                        <a class="{% if blogs.number == page %}active{% endif %}" href="?page={{ page }}">{{ page }}</a>                     
+                        {% endfor %}
+                        {% if blogs.has_next %}
+                        <a href="?page={{ blogs.next_page_number }}">&raquo;</a>  
+                        {% endif %}
+                      </div>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>

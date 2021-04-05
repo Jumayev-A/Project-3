@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{{ form.as_p }}
+sasa
+<main>
+    <div class="trending-area fix">
+        <div class="container">
+            <div class="trending-main">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="trending-bottom">
+                            <div class="row" style="text-align: center;">
+                                <div class="col-lg-12">
+                                    <form enctype="multipart/form-data" action="{% url 'my_app:update_blog' model.id %} " method="POST">
+                                        {% csrf_token %}
+                                        <label>{{ form.title.label }}</label><br>
+                                        {{ form.title }}<br><br>
+                                        <label>{{ form.description.label }}</label><br>
+                                        <textarea name="description" cols="30" rows="10">{{ model.description|safe }}</textarea><br><br>
+                                        <label>File</label><br>
+                                        <input type="file" name="file" required><br><br>
+                                        <button type="submit" class="btn-success">Update</button>
+                                        <br><br>
+                                        <h6 style="color: red;"><a href="/">Yza</a></a></h6>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock content %}
