@@ -4,6 +4,7 @@
 * pip install django-ckeditor
 * pip install django-cleanup
 ## Işletmek ucin:
+##### cd Project-3
 ##### python manage.py runserver
 * http://127.0.0.1:8000
 ##### python manage.py runserver 0.0.0.0:8000
